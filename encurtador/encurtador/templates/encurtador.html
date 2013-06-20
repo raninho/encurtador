@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br><br>
+<form method="post" enctype="multipart/form-data" class="form-horizontal">
+	{% csrf_token %}
+		<div class="input-append">
+			<input class="span12 center" id="id_url" maxlength="1000" name="url" type="text" placeholder="Digite uma URL…" required>
+			<button class="btn btn-primary" type="submit">Encurtar!</button>
+			{% if form.url.errors %} 
+				<a class="control-group error"><span class="help-inline" style='padding-botton:10px;'> {{erro}} </span></a>
+			{% endif %}
+		</div>
+</form>
+<br><br>
+{% if urls %}
+    <table class="table table-hover">
+	<thead>
+		<tr>
+			<th>Data</th>
+			<th>URL</th>
+			<th>Token</th>
+		</tr>
+	</thead>
+	<tbody>
+		{% for url in urls %}
+		<tr>
+			<td> {{ url.momento_cadastro }}</td>
+			<td> {{ url.url }} </td>
+			<td><a href="/{{url.token}}">{{ url.token }}</a></td>
+		</tr>
+		{% endfor %}
+	</tbody>
+     </table>
+{% endif %}
+{% endblock %}

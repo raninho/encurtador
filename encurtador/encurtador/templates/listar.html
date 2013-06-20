@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% if urls %}
+    <table class="table table-hover">
+        <thead>
+                <tr>
+                        <th>Data</th>
+                        <th>URL</th>
+                        <th>Token</th>
+                </tr>
+        </thead>
+        <tbody>
+                {% for url in urls %}
+                <tr>
+                        <td> {{ url.momento_cadastro }}</td>
+                        <td> {{ url.url }} </td>
+                        <td><a href="/{{url.token}}">{{ url.token }}</a></td>
+                </tr>
+                {% endfor %}
+        </tbody>
+     </table>
+{% else %}
+<div class="alert">
+	<button type="button" class="close" data-dismiss="alert">&times;</button>
+	<strong>Atenção!</strong> Você não tem link encurtado. oO
+</div>
+{% endif %}
+
+{% endblock %}
