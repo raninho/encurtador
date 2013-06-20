@@ -15,6 +15,6 @@ test:
 	pip install -r requirements.txt
 	@export PYTHONPATH=`pwd`:`pwd`/dango_project:$$PYTHONPATH && \
 		export DJANGO_SETTINGS_MODULE=encurtador.settings && \
-		python encurtador/manage.py syncdb && \
+		python encurtador/manage.py syncdb --noinput && \
 		python encurtador/manage.py test 
 	
